@@ -1,0 +1,40 @@
+def play_game():
+    print("Welcome to the 21 Number Game!")
+    print("Players take turns counting up to 21.")
+    print("On your turn, you can say 1, 2, or 3 numbers.")
+    print("The player who says '21' loses!\n")
+
+    current_number = 0
+
+    while current_number < 21:
+        # Player 1's turn
+        player1_count = get_player_input("Player 1")
+        current_number += player1_count
+        print(f"Player 1 says: {list(range(current_number - player1_count + 1, current_number + 1))}")
+        
+        if current_number >= 21:
+            print("Player 1 said 21! Player 1 loses!")
+            break
+
+        # Player 2's turn
+        player2_count = get_player_input("Player 2")
+        current_number += player2_count
+        print(f"Player 2 says: {list(range(current_number - player2_count + 1, current_number + 1))}")
+        
+        if current_number >= 21:
+            print("Player 2 said 21! Player 2 loses!")
+            break
+
+def get_player_input(player_name):
+    while True:
+        try:
+            count = int(input(f"{player_name}, how many numbers do you want to say (1, 2, or 3)? "))
+            if count in [1, 2, 3]:
+                return count
+            else:
+                print("Invalid input. You can only say 1, 2, or 3 numbers.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+if __name__ == "__main__":
+    play_game()
